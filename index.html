@@ -1,0 +1,503 @@
+<html>
+<font rwr="1" size="4" style="font-family:Arial">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.css">
+    <style>
+        .red-color {
+            color: #f30000;
+        }
+
+        .tabs-title a {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .tabs-title.is-active a,
+        .tabs-title a:hover {
+            color: #f30;
+            border-bottom: solid 3px #f30;
+            background: #fff;
+        }
+
+
+        a {
+            font-weight: bold;
+        }
+
+        .nav-b {
+            padding: 20px 5px;
+        }
+
+        .nav-b a {
+            color: #333;
+        }
+
+        .nav-b a:hover {
+            color: #f30000;
+        }
+
+        ul.bullet-pts li {
+            padding: 1px 5px;
+        }
+
+        .pc-tab>input,
+        .pc-tab section>div {
+            display: none;
+        }
+
+
+        .page-content {
+            max-width: 100%;
+            margin: 32px auto;
+            background: #fff;
+            font-family: Helvetica, Roboto, Arial, sans-serif;
+        }
+
+        .tabbed {
+            overflow-x: hidden;
+            margin: 32px 0;
+            padding-bottom: 16px;
+        }
+
+        .tabbed [type="radio"] {
+            display: none;
+        }
+
+        .tabs {
+            height: 70px;
+            display: flex;
+            align-items: stretch;
+            list-style: none;
+            padding: 0;
+            border-bottom: 1px solid #ccc;
+            font-weight: bold;
+            font-family: Helvetica, Roboto, Arial, sans-serif;
+        }
+
+        .tab>label {
+            display: block;
+            margin-bottom: -1px;
+            padding: 20px 15px;
+            background: #d9d9d9;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: Helvetica, Roboto, Arial, sans-serif;
+        }
+
+        .tab>label:hover {
+            color: #f30;
+            border-bottom: solid 3px #f30;
+            background: #fff;
+        }
+
+        .tab:hover label {
+            font-weight: bold;
+            border-top-color: #333;
+            color: #333;
+            font-family: Helvetica, Roboto, Arial, sans-serif;
+        }
+
+        .tab-content {
+            display: none;
+            color: #777;
+            border: 1px solid #eeeeee;
+            padding: 25px 0px 0px 25px;
+        }
+
+        div>h4 {
+                    font-family: Helvetica, Roboto, Arial, sans-serif;
+                        color: #444;
+        }
+
+        div>p{
+            font-family: Helvetica, Roboto, Arial, sans-serif;
+        }
+
+        .tabbed [type="radio"]:nth-of-type(1):checked~.tabs .tab:nth-of-type(1) label,
+        .tabbed [type="radio"]:nth-of-type(2):checked~.tabs .tab:nth-of-type(2) label,
+        .tabbed [type="radio"]:nth-of-type(3):checked~.tabs .tab:nth-of-type(3) label,
+        .tabbed [type="radio"]:nth-of-type(4):checked~.tabs .tab:nth-of-type(4) label,
+        .tabbed [type="radio"]:nth-of-type(5):checked~.tabs .tab:nth-of-type(5) label {
+            border-bottom: 3px solid #ff3200;
+            border-top-color: #fff;
+            background: #fff;
+            color: #222;
+            font-weight: bold;
+        }
+
+        .tabbed [type="radio"]:nth-of-type(1):checked~.tab-content:nth-of-type(1),
+        .tabbed [type="radio"]:nth-of-type(2):checked~.tab-content:nth-of-type(2),
+        .tabbed [type="radio"]:nth-of-type(3):checked~.tab-content:nth-of-type(3),
+        .tabbed [type="radio"]:nth-of-type(4):checked~.tab-content:nth-of-type(4) {
+            display: block;
+            
+        }
+
+        @media screen and (max-width: 39.9375em) {
+            .tabbed {
+                display: block;
+            }
+
+            .tabs {
+                display: none;
+            }
+
+            .tab-content {
+                display: block;
+                color: #777;
+                border: 1px solid #eeeeee;
+                padding: 25px 0px 0px 25px;
+            }
+        }
+
+        @media screen and (max-width: 39.9375em) {
+            .pc-tab section>div {
+                display: block;
+            }
+
+            nav .tabs {
+                display: none;
+            }
+        }
+
+       
+
+        #tab1:checked section .tab1,
+        #tab2:checked section .tab2,
+        #tab3:checked section .tab3,
+        #tab4:checked section .tab4 {
+            display: block;
+        }
+
+        #tab1:checked nav .tab1,
+        #tab2:checked nav .tab2,
+        #tab3:checked nav .tab3,
+        #tab4:checked nav .tab4 {
+            color: red;
+        }
+
+        / Visual Styles / $activeColor: #ffffff;
+        $unactiveColor: #eeeeee;
+        $unactiveHoverColor: #dddddd;
+
+        .pc-tab {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    label {
+                        float: left;
+                        padding: 15px 25px;
+                        border: 1px solid #ddd;
+                        border-bottom: 0;
+                        background: $unactiveColor;
+                        color: #444;
+
+                        &:hover {
+                            background: $unactiveHoverColor;
+                        }
+
+                        &:active {
+                            background: $activeColor;
+                        }
+                    }
+
+                    &:not(:last-child) label {
+                        border-right-width: 0;
+                    }
+                }
+            }
+        }
+
+        .pc-tab section {
+            clear: both;
+        }
+
+        .pc-tab a label {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .pc-tab section div {
+            padding: 20px;
+            width: 100%;
+            border: 1px solid #ddd;
+            background: #fff;
+            line-height: 1.5em;
+            letter-spacing: 0.3px;
+            color: #444;
+        }
+
+        #tab1:checked nav .tab1,
+        #tab2:checked nav .tab2,
+        #tab3:checked nav .tab3,
+        #tab4:checked nav .tab4 {
+            label {
+                background: white;
+                color: #111;
+                position: relative;
+
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    height: 2px;
+                    width: 100%;
+                    background: $activeColor;
+                    left: 0;
+                    bottom: -1px;
+                }
+            }
+        }
+
+        #tab1:checked nav .tab1 a,
+        #tab2:checked nav .tab2 a,
+        #tab3:checked nav .tab3 a,
+        #tab4:checked nav .tab4 a {
+            color: #f30;
+            border-bottom: solid 3px #f30;
+            background: #fff;
+            font-weight: bold;
+        }
+
+        @media ()
+    </style>
+    <div id="ebay-template">
+        <div class="row">
+            <div class="small-12 medium-5 columns"> <img
+                    src="https://i.ebayimg.com/images/g/bx4AAOSwtM5jMZks/s-l1600.jpg"> </div>
+            <div class="small-12 medium-7 columns">
+                <div class="red-color" style="margin-top:20px; font-size:1.2rem; line-height:1.8rem;"></div>
+                <h3 style="font-size:2rem; line-height:2rem;"><strong></strong></h3>
+                <div style="margin-top:10px;"> <strong>100% Combed Ring-Spun Cotton Tee
+                    </strong></div>
+                <ul style="margin-top:30px;" class="bullet-pts">
+                    <li>4.2 Oz. Premium Weight Fabric</li>
+                    <li>Super Soft 100% Combed Ring-Spun Cotton</li>
+                    <li>Taped Shoulder to Shoulder</li>
+                    <li>Two Needle Sleeve and Bottom Hem</li>
+                    <li>MADE IN USA</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="small-12 medium-12 columns" style="background: #f1f1f1;" id="features">
+                    <div class="row">
+                        <div class="small-12 medium-5 columns text-center">
+                            <div style="padding:20px 20px 20px 20px;">
+                                <img src="https://cdn.shopify.com/s/files/1/0253/0993/7712/files/m-logo_170x@2x.png?v=1662258025"
+                                    style="height: 175px;">
+                                <h4><strong>MOVE PRODUCT DROP / 00001 THE GLOBAL COLLECTION</strong><br>
+                            -INTERNATIONALLY KNOWN.<br>
+                            GLOBALLY RESPECTED.
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="small-12 medium-7 columns" style="padding: 0;"> <img
+                                src="https://mamenta-mp-images.s3.amazonaws.com/M1.jpg"> </div>
+                    </div>
+                    <div class="row">
+                        <div class=" medium-5 columns text-center medium-push-7">
+                            <div style="padding:20px 20px 20px 20px;">
+                                <img src="https://cdn.shopify.com/s/files/1/0253/0993/7712/files/m-logo_170x@2x.png?v=1662258025"
+                                    style="height: 175px;">
+                                <h4><strong>GO GLOBAL WE GOT YOUR BACK</strong>
+                                 <br> -READY FOR A WORLD TOUR?
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="medium-7 columns medium-pull-5" style="padding: 0;"> <img
+                                src="https://mamenta-mp-images.s3.amazonaws.com/M2.jpg"> </div>
+                    </div>
+                    <div class="row">
+                        <div class="small-12 medium-5 columns text-center">
+                            <div style="padding:20px 20px 20px 20px;">
+                                <img src="https://cdn.shopify.com/s/files/1/0253/0993/7712/files/m-logo_170x@2x.png?v=1662258025"
+                                    style="height: 175px;">
+                                <h4><strong>"YOU SEE OTHERS LEADERS AND THERE'S FOLLOWERS" ROCK THE WORLD!</strong><br>
+                                    -Your Favourite Tech Companies’ Favourite Tech Merch.
+                                </h4>
+                                
+                            </div>
+                        </div>
+                        <div class="small-12 medium-7 columns" style="padding: 0;"> <img
+                                src="https://mamenta-mp-images.s3.amazonaws.com/M3.jpg"> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-center text-center" style="background: #222;" id="video">
+                <div>
+                    <div class="ytvideo"><a target="_blank"
+                            href="https://player.vimeo.com/video/716575620?h=7714670521"><img class="videoimg"
+                                src="https://mamenta-mp-images.s3.amazonaws.com/M4.png"></a>
+                    </div>
+                </div>
+                <style>
+                    .ytvideo * {
+                        box-sizing: border-box;
+                    }
+
+                    .ytvideo {
+                        
+                        font-family: arial;
+                        text-align: center;
+                        position: relative;
+                        
+                    }
+
+                    .videoimg {
+                        width: 1230px; 
+                        height: 630px;
+                    }
+
+
+                    .ytvideo p {
+                        position: absolute;
+                        margin: 0;
+                        color: white;
+                        background-color: rgba(0, 0, 0, .5);
+                    }
+
+                    .ytvideo .yt_hd {
+                        font-size: 16px;
+                        width: 100%;
+                        height: 28px;
+                        line-height: 28px;
+                        text-align: left;
+                        top: 0;
+                        left: 0;
+                        padding-left: 10px;
+                        overflow: hidden;
+                    }
+
+                    .ytvideo .yt_ft {
+                        font-size: 12px;
+                        width: 100%;
+                        bottom: 0;
+                        left: 0;
+                    }
+
+                    .ytvideo img  {
+                       
+                        max-width: 100%;
+                        border: 0;
+                    }
+
+                    .ytvideo a:after {
+                        content: "\A0\25BA";
+                        position: absolute;
+                        width: 60px;
+                        height: 50px;
+                        left: 0;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        margin: auto;
+                        border: 0;
+                        border-radius: 10px;
+                        color: white;
+                        background: rgba(0, 0, 0, .6);
+                        font-size: 24px;
+                        line-height: 50px;
+                        cursor: pointer;
+                    }
+
+                    .ytvideo a:hover:after {
+                        background: #d8d1d1;
+                    }
+
+                    .ytvideo .yt_inp {
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 100%;
+                        text-align: center;
+                        padding: .5em .2em;
+                        xfont-size: 18px;
+                        border: 0;
+                        color: white;
+                        background: rgba(0, 0, 0, .7);
+                    }
+
+                    @media(max-device-width:960px) {
+                        
+
+                        .videoimg{
+                            width: auto; 
+                            height: 270px;
+                        }
+
+                        .ytvideo .yt_inp {
+                            padding: 1em .2em;
+                        }
+                    }
+                </style>
+            </div>
+        </div>
+        <div class="row">
+            <div class="page-content">
+                <div class="tabbed">
+                    <input type="radio" id="tab1" name="css-tabs" checked>
+                    <input type="radio" id="tab2" name="css-tabs">
+                    <input type="radio" id="tab3" name="css-tabs">
+                    <input type="radio" id="tab4" name="css-tabs">
+
+                    <ul class="tabs">
+                        <li class="tab"><label for="tab1">Product Details</label></li>
+                        <li class="tab"><label for="tab2">What's in the Box</label></li>
+                        <li class="tab"><label for="tab3">Specifications</label></li>
+                        <li class="tab"><label for="tab4">Terms & Conditions</label></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <h4>Product Details</h4>
+                        <p style="color: #444444;">Our Logo Tee is a must-have. Cut from Super Soft 100% Combed Ring-Spun Cotton, for an amazing
+                            feel and perfect relaxed fit. You’ll want to live in it.</p>
+                    </div>
+
+                    <div class="tab-content">
+                        <h4>What's in the Box</h4>
+                        <ul>
+                            <li style="color: #444444;">100% Combed Ring-Spun Cotton Tee</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content">
+                        <h4>Specifications</h4>
+                        <ul style="color: #444444;">
+                            <li>4.2 Oz. Premium Weight Fabric</li>
+                            <li> Super Soft 100% Combed Ring-Spun Cotton</li>
+                           <li> Taped Shoulder to Shoulder</li>
+                        <li> Two Needle Sleeve and Bottom Hem</li>
+                        <li> MADE IN USA</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-content">
+                        <h4>Terms & Conditions</h4>
+                        <p style="color: #444444;">Product Availability & Pricing</p>
+                        <p style="color: #444444;">By placing an order with us, you are offering to purchase a product or service. Mamenta reserves
+                        the right to limit, reject, modify, or cancel orders that appear to be *unauthorized parties
+                        (resellers, freight forwarders, vendors).</p>
+
+                        <p style="color: #444444;">Product pricing, due to the nature of the business, may contain errors, and pricing or product
+                        availability may be subject to change at any time without notice. Mamenta reserves the right to
+                        modify or cancel purchases that are due to systemic technical errors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</font>
+
+</html>
